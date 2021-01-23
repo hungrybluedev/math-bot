@@ -1,4 +1,5 @@
 import os
+from warnings import resetwarnings
 import discord
 import dotenv
 from mathbot import commands
@@ -11,6 +12,11 @@ URL = "https://github.com/hungrybluedev/math-bot/"
 DOCUMENTATION_LINK = "https://github.com/hungrybluedev/math-bot/blob/main/docs.md"
 BOT_NAME = "MathBot"
 TRIGGER_PREFIX = "$mathbot"
+# This combination of COMPACT_FORMAT and GENERATOR_LIMIT keeps the character
+# count under 2000. This prevents errors returned by Discord's API. Therefore,
+# BE CAREFUL WHILE CHANGING THESE VALUES; EXPERIMENT LOCALLY BEFORE DEPLOYMENT
+COMPACT_FORMAT = "%.4f"
+GENERATOR_LIMIT = 250
 # Try to obtain the version from git, otherwise retain default
 VERSION = "v0.1"
 try:
@@ -45,7 +51,11 @@ def _process_command(args):
         elif command == "info":
             return "%s %s; Github: %s" % (BOT_NAME, VERSION, URL)
         else:
-            return _DEFAULT_ERROR % (command, DOCUMENTATION_LINK)
+            try:
+                result = commands.evaluate(command, [])
+            except:
+                return _DEFAULT_ERROR % (command, DOCUMENTATION_LINK)
+            return result
     else:
         # 3. Command followed by arguments
         try:
@@ -73,7 +83,7 @@ async def on_message(message):
 
     if message.content.startswith(TRIGGER_PREFIX):
         args = message.content[len(TRIGGER_PREFIX):].strip().split()
-        await message.channel.send(_process_command(args))
+        await message.reply(_process_command(args))
 
 if __name__ == "__main__":
     # Load the DISCORD_TOKEN environment variable from the .env file if it exists
