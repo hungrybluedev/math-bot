@@ -49,6 +49,8 @@ def _process_command(args):
                 return _DEFAULT_ERROR % (command, DOCUMENTATION_LINK)
         except ValueError as err:
             return "%s Link to documentation: %s" % (err, DOCUMENTATION_LINK)
+        except:
+            return "We've encountered an unexpected error. Please create a new issue at %sissues" % URL
 
 
 @_client.event
