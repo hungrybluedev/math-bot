@@ -12,7 +12,7 @@ DOCUMENTATION_LINK = "https://github.com/hungrybluedev/math-bot/blob/main/docs.m
 BOT_NAME = "MathBot"
 TRIGGER_PREFIX = "$mathbot"
 # Try to obtain the version from git, otherwise retain default
-VERSION = "0.1"
+VERSION = "v0.1"
 try:
     import subprocess
     cmd = "git describe".split()
@@ -41,9 +41,9 @@ def _process_command(args):
         if command == "hello" or command == "help":
             return "Hello, I'm %s! I can evaluate some common math functions. Read the documentation to know more: %s" % (BOT_NAME, DOCUMENTATION_LINK)
         elif command == "version":
-            return "%s v%s" % (BOT_NAME, VERSION)
+            return "%s %s" % (BOT_NAME, VERSION)
         elif command == "info":
-            return "%s v%s; Github: %s" % (BOT_NAME, VERSION, URL)
+            return "%s %s; Github: %s" % (BOT_NAME, VERSION, URL)
         else:
             return _DEFAULT_ERROR % (command, DOCUMENTATION_LINK)
     else:
