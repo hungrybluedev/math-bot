@@ -69,7 +69,7 @@ async def on_message(message):
 if __name__ == "__main__":
     # Load the DISCORD_TOKEN environment variable from the .env file if it exists
     dotenv.load_dotenv()
-    # Log in to Discord and start processing messages
-    _client.run(os.getenv('DISCORD_TOKEN'))
     # Uncomment this line to make sure a web server keeps running
     # keep_alive()
+    # Log in to Discord and start processing messages
+    _client.run(os.getenv('DISCORD_TOKEN'))
