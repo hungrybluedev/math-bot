@@ -1,8 +1,8 @@
 import os
-from mathbot import commands
 import discord
 import dotenv
-
+from mathbot import commands
+from mathbot.keep_alive import keep_alive
 
 # PUBLIC VARIABLES
 # ================
@@ -71,3 +71,5 @@ if __name__ == "__main__":
     dotenv.load_dotenv()
     # Log in to Discord and start processing messages
     _client.run(os.getenv('DISCORD_TOKEN'))
+    # Uncomment this line to make sure a web server keeps running
+    # keep_alive()
