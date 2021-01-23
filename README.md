@@ -4,8 +4,6 @@
 
 # Introduction
 
-
-
 # Usage
 
 The source code for this bot is freely available under the [MIT License](#license). Anyone can clone this repository and host their own instance of this bot.
@@ -38,6 +36,11 @@ A Github account is optional, but you will need it if you want to contribute cod
 Follow the relevant sections of [this tutorial](https://www.freecodecamp.org/news/create-a-discord-bot-with-python/) by **FreeCodeCamp** to obtain the required token.
 
 > ⚠️ **WARNING:** Do not share this token with anyone else, especially online. Do not add it to a repository. If you have done so accidentally, you should regenerate the token immediately.
+
+### Install Dependencies
+
+1. (Optional) If you want isolation, create a virtual environment using the `virtialenv` package. Install the dependencies when the environment is active.
+2. In the root directory, run `pip install -r requirements.txt`
 
 ### Prepare `.env` File
 
