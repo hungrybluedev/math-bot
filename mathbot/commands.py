@@ -22,7 +22,7 @@ def _median(args):
     if len(args) == 0:
         raise ValueError("I need at least 1 argument to calculate the median.")
     num_arr = _convert_to_floats(args)
-    return stats.median(args)
+    return stats.median(num_arr)
 
 
 _function_map = {
