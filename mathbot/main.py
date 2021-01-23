@@ -8,10 +8,17 @@ from mathbot.keep_alive import keep_alive
 # ================
 # Customize these variables to suit your needs
 URL = "https://github.com/hungrybluedev/math-bot/"
-VERSION = "0.1.0"
 DOCUMENTATION_LINK = "https://github.com/hungrybluedev/math-bot/blob/main/docs.md"
 BOT_NAME = "MathBot"
 TRIGGER_PREFIX = "$mathbot"
+# Try to obtain the version from git, otherwise retain default
+VERSION = "0.1"
+try:
+    import subprocess
+    cmd = "git describe".split()
+    VERSION = subprocess.check_output(cmd).decode().strip()
+except:
+    pass
 
 # PRIVATE VARIABLES
 # =================
