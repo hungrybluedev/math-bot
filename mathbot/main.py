@@ -9,7 +9,7 @@ from mathbot.keep_alive import keep_alive
 # ================
 # Customize these variables to suit your needs
 URL = "https://github.com/hungrybluedev/math-bot/"
-DOCUMENTATION_LINK = "https://github.com/hungrybluedev/math-bot/blob/main/docs.md"
+DOCUMENTATION_LINK = "<https://github.com/hungrybluedev/math-bot/blob/main/docs.md>"
 BOT_NAME = "MathBot"
 TRIGGER_PREFIX = "$mathbot"
 # This combination of COMPACT_FORMAT and GENERATOR_LIMIT keeps the character
@@ -61,7 +61,7 @@ def _process_command(args):
         try:
             result = commands.evaluate(command, args[1:])
             if result is not None:
-                return "The result is %s" % result
+                return result
             else:
                 return _DEFAULT_ERROR % (command, DOCUMENTATION_LINK)
         except ValueError as err:
