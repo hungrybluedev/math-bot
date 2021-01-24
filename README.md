@@ -4,11 +4,27 @@
 
 # Introduction
 
+A simple text-controlled Discord Bot written in Python. It can perform common math tasks, especially those geared towards randomness and simulation. You can join the test server to see the bot in action:
+
+<div align=center style="margin: 0 auto;">
+
+[![Discord](https://img.shields.io/discord/802054642812846100)](https://discord.gg/9PQHQ3ZsqE)
+
+</div>
+
+It is recommended to use the `#math-bot-test` channel to test the commands.
+
 # Usage
 
-The source code for this bot is freely available under the [MIT License](#license). Anyone can clone this repository and host their own instance of this bot.
+**Example**:
+
+```
+$mathbot mean 1 2 3 4 5
+```
 
 Refer to the [documentation](docs.md) for all the supported commands and the syntax.
+
+The source code for this bot is freely available under the [MIT License](#license). Anyone can clone this repository and host their own instance of this bot.
 
 In case you find a bug, or notice that a certain feature is absent but want it to be added, consider looking at the [existing issues](https://github.com/hungrybluedev/math-bot/issues). If nothing matches what you found, [create a new Issue](https://github.com/hungrybluedev/math-bot/issues/new/choose).
 
@@ -77,13 +93,22 @@ Generally, users might prefer hosting an instance of this bot (for free) rather 
 1. Using [Repl.it](https://repl.it/) - Users can follow this [excellent tutorial](https://www.freecodecamp.org/news/create-a-discord-bot-with-python/) by **FreeCodeCamp** to learn how to host an instance of this bot for free.
 2. Using [Heroku](https://www.heroku.com/) - Another approach that might need a bit more configuration than the previous one: following [this tutorial](https://www.techwithtim.net/tutorials/discord-py/hosting-a-discord-bot-for-free/) by Tech with Tim.
 
+However, the instances may not stay active despite the tricks mentioned. In this case, it is better to host it on a VPS.
+
+1. Rent a VPS from a hosting provider.
+2. Harden the server, add users, set up SSH, install updates, etc.
+3. Connect via SSH.
+4. Follow the instructions in the previous sections until the part where you start the bot.
+5. Use `nohup python3 -m mathbot.main &` to create a detached process where the Bot will run independent of the SSH. Note the PID stated.
+6. Kill the parent PID (generated in the previous step) when you want the Bot to stop and disconnect.
+
 # License
 
 This project is licensed under the [MIT License](LICENSE).
 
 # Support
 
-If this project has been useful to you, please consider supporting me on Ko-fi or Patreon.
+If this project has been useful to you, please consider supporting me on Ko-fi or Patreon. It will help me cover the cost of hosting this bot.
 
 [<img style="height: 36px;" height="36" src="https://raw.githubusercontent.com/hungrybluedev/hungrybluedev/master/kofi.webp">](https://ko-fi.com/hungrybluedev)
 [<img style="height: 36px;" height="36"  src="https://raw.githubusercontent.com/hungrybluedev/hungrybluedev/master/patreon.webp">](https://www.patreon.com/hungrybluedev)
