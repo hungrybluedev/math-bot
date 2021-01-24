@@ -142,8 +142,11 @@ def _bernoulli(args):
         count = _obtain_count(args[0])
         return " ".join([str(_bernoulli_variate(0.5)) for _ in range(count)])
     elif n == 2:
-        # 3. Two arguments: p (single) and count (positive integer)
-        p = _obtain_floats([args[0]])[0]
+        # 3. Two arguments: p (nonnegative float) and count (positive integer)
+        p = _obtain_non_negaitive_float(args[0])
+        # Normalize p to be in the range [0, 1)
+        while p >= 1:
+            p /= 10
         count = _obtain_count(args[1])
         return " ".join([str(_bernoulli_variate(p)) for _ in range(count)])
     else:
@@ -156,7 +159,10 @@ def _binomial(args):
         raise ValueError(
             "Incorrect number of arguments. Refer to the documentation: %s" % DOCUMENTATION_LINK)
     count = _obtain_count(args[0])
-    p = _obtain_floats([args[1]])[0]
+    p = _obtain_non_negaitive_float(args[1])
+    # Normalize p to be in the range [0, 1)
+    while p >= 1:
+        p /= 10
     m = _obtain_count(args[2])
     return " ".join([str(sum([_bernoulli_variate(p) for _ in range(count)])) for _ in range(m)])
 
@@ -228,7 +234,10 @@ _function_map = {
     # ==========
     # STATISTICS
     # ==========
+    # Three definitions for mean
     "mean": _mean,
+    "avg": _mean,
+    "average": _mean,
     "median": _median,
     "mode": _mode,
     # Two definitions for variance
@@ -238,8 +247,9 @@ _function_map = {
     "stdev": _stdev,
     "stddev": _stdev,
     "standard-deviation": _stdev,
-    # Two definitions for population variance
+    # Three definitions for population variance
     "pvar": _pvar,
+    "pvariance": _pvar,
     "population-variance": _pvar,
     # Three definitions for population standard deviation
     "pstdev": _pstdev,
