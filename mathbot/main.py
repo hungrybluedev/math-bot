@@ -1,5 +1,4 @@
 import os
-from warnings import resetwarnings
 import discord
 import dotenv
 from mathbot import commands
@@ -90,5 +89,9 @@ if __name__ == "__main__":
     dotenv.load_dotenv()
     # Uncomment this line to make sure a web server keeps running
     # keep_alive()
-    # Log in to Discord and start processing messages
-    _client.run(os.getenv('DISCORD_TOKEN'))
+    token = os.getenv('DISCORD_TOKEN')
+    if token is not None:
+        # Log in to Discord and start processing messages
+        _client.run(token)
+    else:
+        print("Could not obtain the token. Please obtain a Discord Bot token and place it in the .env file. Follow the instructions in the README: %s" % URL)
