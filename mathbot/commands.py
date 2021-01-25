@@ -25,6 +25,15 @@ def _obtain_count(num_str):
             "Expected a positive integer. Got %s instead." % num_str)
 
 
+def _obtain_integer(num_str):
+    try:
+        value = int(num_str)
+        sign = -1 if value < 0 else +1
+        return sign * min(abs(value), GENERATOR_LIMIT)
+    except:
+        raise ValueError("Expected an integer. Got %s instead." % num_str)
+
+
 def _obtain_non_negaitive_float(num_str):
     try:
         value = float(num_str)
@@ -211,6 +220,74 @@ def _exponential(args):
             "Incorrect number of arguments. Refer to the documentation.")
 
 
+def _range(args):
+    n = len(args)
+    if n == 1:
+        # 1. One argument - limit (positive integer)
+        limit = _obtain_count(args[0])
+        return " ".join([str(x) for x in range(1, limit + 1)])
+    elif n == 2:
+        # 2. Arguments - start (integer) and stop (integer)
+        start = _obtain_integer(args[0])
+        stop = _obtain_integer(args[1])
+        step = +1 if start < stop else -1
+        return " ".join([str(x) for x in range(start, stop + step, step)])
+    else:
+        raise ValueError(
+            "Incorrect number of arguments. Refer to the documentation.")
+
+
+def _sum(args):
+    if len(args) == 0:
+        raise ValueError("Need at least one element to calculate the sum.")
+    return sum(_obtain_floats(args))
+
+
+def _sort(args):
+    if len(args) == 0:
+        raise ValueError("Need at least one element to sort.")
+    return " ".join(sorted(args))
+
+
+def _dsort(args):
+    if len(args) == 0:
+        raise ValueError("Need at least one element to sort.")
+    return " ".join(sorted(args, reverse=True))
+
+
+def _shuffle(args):
+    if len(args) == 0:
+        raise ValueError("Need at least one element to shuffle.")
+    random.shuffle(args)
+    return " ".join(args)
+
+
+def _reverse(args):
+    if len(args) == 0:
+        raise ValueError("Need at least one element to reverse.")
+    return " ".join(reversed(args))
+
+
+def _sample(args):
+    if len(args) <= 1:
+        raise ValueError("Need at least one element to sample from.")
+    count = _obtain_count(args[0])
+    items = args[1:]
+    if count >= len(items):
+        random.shuffle(items)
+        return " ".join(items)
+    else:
+        return " ".join(random.sample(items, count))
+
+
+def _choose(args):
+    if len(args) <= 1:
+        raise ValueError("Need at least one element to choose from.")
+    count = _obtain_count(args[0])
+    items = args[1:]
+    return " ".join(random.choices(items, k=count))
+
+
 _function_map = {
     # ========================
     # DISTRIBUTION SIMULATIONS
@@ -255,6 +332,24 @@ _function_map = {
     "pstdev": _pstdev,
     "pstddev": _pstdev,
     "population-standard-deviation": _pstdev,
+    # =================
+    # UTILITY FUNCTIONS
+    # =================
+    # Two definitions for range
+    "range": _range,
+    "loop": _range,
+    "sum": _sum,
+    "sort": _sort,
+    "dsort": _dsort,
+    "mix": _shuffle,
+    "shuffle": _shuffle,
+    "reverse": _reverse,
+    # # Two definitions for sample
+    "sample": _sample,
+    "draw": _sample,
+    # # Two definitions for choose
+    "choose": _choose,
+    "pick": _choose,
 }
 
 

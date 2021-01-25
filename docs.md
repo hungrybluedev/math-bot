@@ -228,12 +228,133 @@ $mathbot var 1 5 6 3 6 3 6 7 3 1
 
 ## Utility Functions
 
+## Range
+
+**Command strings**: `range`, `loop`
+
+**Description**: Returns a list of integers from the smallest to the largest. Both limits are inclusive.
+
+| Arguments           | Explanation                              | Example               |
+| ------------------- | ---------------------------------------- | --------------------- |
+| **limit**           | Returns integers from 1 to `limit`.      | `$mathbot loop 10`    |
+| **start**, **stop** | Returns integers from `start` to `stop`. | `$mathbot loop 20 35` |
+
+| Argument | Type                                 |
+| -------- | ------------------------------------ |
+| limit    | integer with abs value less than 250 |
+| start    | integer with abs value less than 250 |
+| stop     | integer with abs value less than 250 |
+
+Note that if `start` > `stop`, a descending range is returned.
+
+### Sum
+
+**Commands strings**: `sum`
+
+**Description**: Returns the sum of the numeric arguments (floats).
+
+**Minimum arguments**: 1
+
+**Example**:
+
+```
+$mathbot sum 10 12 30 12 10 0 1 30
+```
+
 ### Sort
+
+#### Ascending Order
+
+**Command strings**: `sort`
+
+**Description**: Returns a sorted list of the given arguments in ascending order. The strings are sorted alphabetically.
+
+**Minimum arguments**: 1
+
+**Example**:
+
+```
+$mathbot sort this can sort strings of words as well
+```
+
+#### Descending Order
+
+**Command strings**: `dsort`
+
+**Description**: Returns a sorted list of the given arguments in descending order. The strings are sorted alphabetically but in reverse.
+
+**Minimum arguments**: 1
+
+**Example**:
+
+```
+$mathbot dsort this can sort strings of words as well
+```
 
 ### Shuffle
 
+**Command strings**: `mix`, `shuffle`
+
+**Description**: Shuffles the given list of arguments.
+
+**Minimum arguments**: 1
+
+**Example**:
+
+```
+$mathbot mix one two three four five
+```
+
 ### Reverse
+
+**Command strings**: `reverse`
+
+**Description**: Reverses the given list of argument.
+
+**Minimum arguments**: 1
+
+**Example**:
+
+```
+$mathbot reverse one two three four five
+```
 
 ### Sample
 
-###
+**Command strings**: `sample`, `draw`
+
+**Description**: Randomly samples the required number items from the list provided without replacement.
+
+**Syntax**:
+
+```
+$mathbot draw <count> [item1 item2 item3 ...]
+```
+
+Here **count** should be less than the number of items provided. If not, the entire list is shuffled and returned.
+
+**Example**:
+
+```
+$mathbot draw 3 sam roy jean joy bill
+```
+
+### Choose
+
+**Command strings**: `choose`, `pick`
+
+**Description**: Randomly selects the required number of items from the list without replacement. Can have repeats.
+
+**Syntax**:
+
+```
+$mathbot choose <count> [item1 item2 item3 ...]
+```
+
+The **count** can be any positive integer (within the generator limit).
+
+**Example**:
+
+```
+$mathbot choose 10 sam roy jean joy bill
+```
