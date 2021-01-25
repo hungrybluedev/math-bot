@@ -51,11 +51,11 @@ def _process_command(args):
         elif command == "info":
             return "%s %s; Github: %s" % (BOT_NAME, VERSION, URL)
         else:
-            try:
-                result = commands.evaluate(command, [])
-            except:
+            result = commands.evaluate(command, [])
+            if result is not None:
+                return result
+            else:
                 return _DEFAULT_ERROR % (command, DOCUMENTATION_LINK)
-            return result
     else:
         # 3. Command followed by arguments
         try:
