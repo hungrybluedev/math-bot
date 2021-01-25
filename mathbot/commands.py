@@ -1,4 +1,4 @@
-from mathbot.main import COMPACT_FORMAT, DOCUMENTATION_LINK, GENERATOR_LIMIT
+from mathbot.main import COMPACT_FORMAT, GENERATOR_LIMIT
 import random
 import statistics as stats
 
@@ -125,7 +125,7 @@ def _uniform(args):
         return " ".join([str(COMPACT_FORMAT % random.uniform(lower, upper)) for _ in range(count)])
     else:
         raise ValueError(
-            "Incorrect number of arguments. Refer to the documentation: %s" % DOCUMENTATION_LINK)
+            "Incorrect number of arguments. Refer to the documentation.")
 
 
 def _bernoulli_variate(p):
@@ -151,13 +151,13 @@ def _bernoulli(args):
         return " ".join([str(_bernoulli_variate(p)) for _ in range(count)])
     else:
         raise ValueError(
-            "Incorrect number of arguments. Refer to the documentation: %s" % DOCUMENTATION_LINK)
+            "Incorrect number of arguments. Refer to the documentation.")
 
 
 def _binomial(args):
     if len(args) != 3:
         raise ValueError(
-            "Incorrect number of arguments. Refer to the documentation: %s" % DOCUMENTATION_LINK)
+            "Incorrect number of arguments. Refer to the documentation.")
     count = _obtain_count(args[0])
     p = _obtain_non_negaitive_float(args[1])
     # Normalize p to be in the range [0, 1)
@@ -192,7 +192,7 @@ def _normal(args):
         return " ".join([str(COMPACT_FORMAT % random.normalvariate(mu, sigma)) for _ in range(count)])
     else:
         raise ValueError(
-            "Incorrect number of arguments. Refer to the documentation: %s" % DOCUMENTATION_LINK)
+            "Incorrect number of arguments. Refer to the documentation.")
 
 
 def _exponential(args):
@@ -208,7 +208,7 @@ def _exponential(args):
         return " ".join([str(COMPACT_FORMAT % random.expovariate(_lambda)) for _ in range(count)])
     else:
         raise ValueError(
-            "Incorrect number of arguments. Refer to the documentation: %s" % DOCUMENTATION_LINK)
+            "Incorrect number of arguments. Refer to the documentation.")
 
 
 _function_map = {
